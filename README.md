@@ -43,13 +43,24 @@ flowchart TD
 
 ### 1. Grilling — Requirements Alignment
 
-Before writing the PRD, the agent conducts a structured interview to clarify product decisions.
+Before writing the PRD, the agent conducts a structured interview to clarify product decisions and establish a shared understanding with the user.
 
-The agent asks questions in numbered rounds and recommends an answer for each question. The user can accept a recommendation or propose an alternative.
+This stage is inspired by Matt Pocock's **Grilling** skill:
 
-The agent should investigate facts independently instead of asking the user to provide information that can be discovered in the repository, existing documentation, or issue history.
+**Reference:** [mattpocock/skills — Grilling SKILL.md](https://github.com/mattpocock/skills/blob/main/skills/productivity/grilling/SKILL.md)
 
-The session ends when the decision frontier is empty and the user explicitly confirms that there is a shared understanding.
+The skill provides the foundation for a decision-driven interview: explore the design space, identify unresolved decisions, recommend answers, investigate facts independently, and wait for the user's confirmation before proceeding.
+
+Within this workflow, the grilling process follows these principles:
+
+- Explore the relevant branches of the decision tree.
+- Identify which decisions can be made without depending on unresolved answers.
+- Ask questions in structured rounds, with a recommended answer for each question.
+- Investigate facts using the repository, existing documentation, and available tools instead of asking the user to find them.
+- Leave product decisions to the user.
+- Do not proceed to implementation until the user explicitly confirms that a shared understanding has been reached.
+
+The session is complete when all relevant decisions have been resolved and the user confirms alignment.
 
 **Output:** agreed decisions about scope, expected behavior, constraints, and acceptance criteria.
 
@@ -117,7 +128,7 @@ They should cover:
 - Test execution commands
 - Delivery expectations
 
-#### The TDD cycle
+#### The TDD Cycle
 
 The agent must follow this sequence:
 
@@ -178,8 +189,9 @@ The PRD remains the source of truth. When it changes, the affected artifacts mus
 1. Update or clarify the PRD.
 2. Identify affected tasks and subtasks in `spp.md`.
 3. Update `AGENTS.md` only if development rules or technical constraints are affected.
-4. Reassess the current implementation against the updated requirements.
-5. Resume development with the revised task and acceptance criteria.
+4. Reassess the current implementation and tests against the updated requirements.
+5. Reopen previously completed tasks if they no longer satisfy the revised requirements.
+6. Resume development with the revised tasks and acceptance criteria.
 
 Not every change requires rebuilding everything. Update only what is affected, while checking dependencies and consistency across the workflow.
 
@@ -193,6 +205,10 @@ Not every change requires rebuilding everything. Update only what is affected, w
 | `AGENTS.md` | Define development rules and TDD | User, with agent assistance |
 | Code and tests | Implement the current task | AI agent |
 | Review and feedback | Verify and correct implementation | Human reviewer |
+
+## References
+
+- **Grilling skill by Matt Pocock:** [skills/productivity/grilling/SKILL.md](https://github.com/mattpocock/skills/blob/main/skills/productivity/grilling/SKILL.md)
 
 ## Guiding Principle
 
